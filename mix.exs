@@ -5,8 +5,9 @@ defmodule Hexdurr.MixProject do
     [
       app: :hexdurr,
       version: "0.1.0",
-      elixir: "~> 1.9-dev",
+      elixir: "~> 1.7",
       start_permanent: Mix.env() == :prod,
+      escript: [main_module: Hexdurr.CLI],
       deps: deps()
     ]
   end
@@ -14,15 +15,15 @@ defmodule Hexdurr.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger]
+      extra_applications: [:logger, :inets, :ssl]
     ]
   end
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      # {:dep_from_hexpm, "~> 0.3.0"},
-      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
+      {:hex_core, github: "hexpm/hex_core", branch: "emj/add-org-api"},
+      {:yamerl, "~> 0.7.0"}
     ]
   end
 end
