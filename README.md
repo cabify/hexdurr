@@ -1,21 +1,34 @@
 # Hexdurr
 
-**TODO: Add description**
+CLI tool for managing Hex organization memberships and permissions.
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `hexdurr` to your list of dependencies in `mix.exs`:
+The latest stable version of the package can be installed by running
+`mix escript.install hex hexdurr`. The development version can be installed by running
+`mix do escript.build, escript.install`.
 
-```elixir
-def deps do
-  [
-    {:hexdurr, "~> 0.1.0"}
-  ]
-end
+## Usage
+
+Hexdurr takes a YAML configuration of the following and updates the Hex organization accordingly,
+updating the number of reserved seats, adds/removes members and updates permission roles:
+
+```yaml
+members:
+  - username: dirk.gently
+    role: admin
+  - username: arthur.dent
+    role: write
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/hexdurr](https://hexdocs.pm/hexdurr).
+Run `hexdurr generate` to generate a new YAML configuration file from the current organization
+memberships, this can be useful when starting to use Hexdurr with an existing organization.
 
+Update the organization from the given configuration by running `hexdurr run`.
+
+### Command line flags
+
+  * `--organization NAME` - The organization to configure (required)
+  * `--file PATH` - Path to the YAML configuration file (required)
+  * `--key API_KEY` - The Hex API key (required)
+  * `--dry_run` - If set only outputs the changes to make without performing them (optional)
