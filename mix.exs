@@ -22,7 +22,7 @@ defmodule Hexdurr.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:hex_core, github: "hexpm/hex_core", branch: "emj/add-org-api"},
+      {:hex_core, github: "hexpm/hex_core"},
       {:yamerl, "~> 0.7.0"}
     ]
   end
